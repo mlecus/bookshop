@@ -1,0 +1,5 @@
+    <form action="logout" method="get">
+        <p class="logoutButton">
+            <input type="submit" value="Logout">
+        </p>
+    </form>

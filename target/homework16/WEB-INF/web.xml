@@ -1,0 +1,126 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app
+        version="3.1"
+        metadata-complete="false"
+        xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Bookstore</display-name>
+
+    <servlet>
+        <servlet-name>welcomePage</servlet-name>
+        <jsp-file>/welcomePage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>welcomePage</servlet-name>
+        <url-pattern>/welcomePage</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>com.sgalaktionov.homework16.application.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>com.sgalaktionov.homework16.application.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>orderPage</servlet-name>
+        <jsp-file>/orderPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderPage</servlet-name>
+        <url-pattern>/orderPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addItemToOrder</servlet-name>
+        <servlet-class>com.sgalaktionov.homework16.application.AddItemToOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addItemToOrder</servlet-name>
+        <url-pattern>/addItem</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>submitOrder</servlet-name>
+        <servlet-class>com.sgalaktionov.homework16.application.SubmitOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>submitOrder</servlet-name>
+        <url-pattern>/submitOrder</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>billPage</servlet-name>
+        <jsp-file>/billPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>billPage</servlet-name>
+        <url-pattern>/billPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>com.sgalaktionov.homework16.application.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>notAgreedError</servlet-name>
+        <jsp-file>/errorPages/errorTermNotAgreed.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notAgreedError</servlet-name>
+        <url-pattern>/errorTermNotAgreed</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>termAgreeFilter</filter-name>
+        <filter-class>com.sgalaktionov.homework16.filters.AgreeWithTermsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>termAgreeFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/orderServlet</url-pattern>
+        <url-pattern>/orderPage</url-pattern>
+        <url-pattern>/addItem</url-pattern>
+        <url-pattern>/submitOrder</url-pattern>
+        <url-pattern>/billPage</url-pattern>
+    </filter-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>welcomePage</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorPages/error404.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>com.sgalaktionov.homework16.application.Exceptions.ThermNotAgreedException</exception-type>
+        <location>/errorPages/errorTermNotAgreed.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/errorPages/errorException.jsp</location>
+    </error-page>
+</web-app>
